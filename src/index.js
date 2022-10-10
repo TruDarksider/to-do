@@ -10,23 +10,30 @@ class toDo {
 }
 
 function appendToDOM(newDo) {
-let tdTitle = document.createElement('h1');
-tdTitle.textContent = newDo.title;
-let tdDescription = document.createElement('p');
-tdDescription.textContent = newDo.description;
-tdTitle.appendChild(tdDescription);
-let tdDD = document.createElement('p');
-tdDD.textContent = newDo.dueDate;
-tdTitle.appendChild(tdDD);
-let tdPriority = document.createElement('p');
-tdPriority.textContent = newDo.priority;
-tdTitle.appendChild(tdPriority);
-let trashButton = document.createElement('button');
-trashButton.classList.add('trash');
-trashButton.textContent = 'Delete';
-tdTitle.appendChild(trashButton);
-tdTitle.addEventListener('click', deleteToDo);
-document.body.appendChild(tdTitle);
+    let tdContainer = document.createElement('div');
+    tdContainer.classList.add('tdContainer');
+    let tdTitle = document.createElement('h1');
+    tdTitle.textContent = newDo.title;
+    tdTitle.classList.add('tdTitle');
+    tdContainer.appendChild(tdTitle);
+    let tdDescription = document.createElement('p');
+    tdDescription.textContent = newDo.description;
+    tdDescription.classList.add('tdDescription');
+    tdContainer.appendChild(tdDescription);
+    let tdDD = document.createElement('p');
+    tdDD.textContent = newDo.dueDate;
+    tdDD.classList.add('tdDueDate');
+    tdContainer.appendChild(tdDD);
+    let tdPriority = document.createElement('p');
+    tdPriority.textContent = newDo.priority;
+    tdPriority.classList.add('tdPriority');
+    tdContainer.appendChild(tdPriority);
+    let trashButton = document.createElement('button');
+    trashButton.classList.add('trash');
+    trashButton.textContent = 'Click me when completed!';
+    tdContainer.appendChild(trashButton);
+    tdContainer.addEventListener('click', deleteToDo);
+    document.querySelector('.tdList').appendChild(tdContainer);
 }
 
 function addNewToDo(){
@@ -86,7 +93,12 @@ function initializeDOM(){
     addButton.addEventListener('click', ()=>{
         if(!formArea.firstChild){addNewToDo();}
     })
+
+    let todoList = document.createElement('div');
+    todoList.classList.add('tdList');
+    document.body.appendChild(todoList);
 }
 
 initializeDOM();
 appendToDOM(new toDo('Example', 'This is an example ToDo item', '1/2/2023', 'Moderate'));
+appendToDOM(new toDo('A longer example where the title should stretch at least into a second row but if I have typed enough it possibly goes to the third', 'This description is also meant to be long because I would like to verify just how the grid will change based on text that, frankly, shouldn\'t be this long in an To Do task. Maybe another method of keeping track of things would be better for you?', '9/28/2023', 'Ehh'));
