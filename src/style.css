@@ -1,4 +1,13 @@
 
+.listArea{
+    display: flex;
+    gap: 5px;
+}
+
+.listTab {
+    background-color: aqua;
+}
+
 .tdContainer {
     display: grid;
     background-color: blueviolet;
